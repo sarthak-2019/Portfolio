@@ -1,46 +1,59 @@
 import Image from "next/image";
-import { collageFigures } from "@/lib/content";
+import { collageFigures, creator, stats } from "@/lib/content";
 import { Page } from "../Page";
 
+// Per-column parallax speeds for the collage (ScrollSmoother data-speed).
+const SPEEDS = [0.9, 1.08, 0.96, 1.14, 0.94, 1.06, 0.88];
+
 export function Cover() {
+	const kicker = `${creator.name} — Strategy-led UGC & Direct-Response Creative`;
+
 	return (
-		<Page id="cover" className="cover" eager>
+		<Page id="cover" className="cover">
 			<div className="page-grain" />
 			<div className="page-content cover-head">
-				<p className="kicker">The Strategy, Psychology &amp; Design</p>
+				<p className="kicker" data-text={kicker}>
+					{kicker}
+				</p>
 				<h1 className="wordmark">
-					Crimson
+					UGC
 					<br />
-					Press Kit
+					Media Kit
 				</h1>
 				<div className="rule" />
-				<p className="tagline">Build a brand that turns heads &amp; makes money</p>
+				<p className="tagline">UGC ads that actually convert</p>
 			</div>
 
 			<div className="page-content collage">
-				{collageFigures.map((n) => (
-					<div className="fig" key={n}>
-						<Image
-							src={`/img/fig-${n}.jpg`}
-							alt={`Editorial figure ${n}`}
-							width={320}
-							height={427}
-							sizes="(min-width: 768px) 140px, 25vw"
-							loading="eager"
-						/>
-						<span>FIG.{n}</span>
+				{collageFigures.map((n, i) => (
+					<div className="fig" key={n} data-speed={`clamp(${SPEEDS[i % SPEEDS.length]})`}>
+						<div className="fig-inner">
+							<Image
+								src={`/img/fig-${n}.jpg`}
+								alt={`Still from UGC video ${n}`}
+								width={320}
+								height={427}
+								sizes="(min-width: 768px) 140px, 25vw"
+								loading="eager"
+							/>
+							<span>REEL.{String(n).padStart(2, "0")}</span>
+						</div>
 					</div>
 				))}
 			</div>
 
 			<div className="page-content cover-foot">
 				<div>
-					Vol. 2024
+					Vol. {creator.year}
 					<br />
-					Vance Studio
+					{creator.handle}
+				</div>
+				<div className="scroll-cue" aria-hidden="true">
+					<span>Scroll</span>
+					<i />
 				</div>
 				<div className="right">
-					Based in Lisbon
+					{stats[0].value} Videos · {stats[1].value} Brands
 					<br />
 					Available Worldwide
 				</div>

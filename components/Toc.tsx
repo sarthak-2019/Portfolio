@@ -17,7 +17,9 @@ export function Toc() {
 						<span className="toc-index">{entry.index}</span>
 						<span>
 							<span className="toc-title">{entry.title}</span>
-							<span className="toc-sub">{entry.sub}</span>
+							<span className="toc-sub" data-text={entry.sub}>
+								{entry.sub}
+							</span>
 						</span>
 					</span>
 				</button>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { creator } from "@/lib/content";
 import "./globals.css";
 
 const inter = localFont({
@@ -27,9 +28,8 @@ const playfair = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Crimson Press Kit — Mara Vance",
-	description:
-		"The Crimson Press Kit — an editorial, spiral-bound portfolio by brand designer Mara Vance.",
+	title: `${creator.name} — UGC that converts`,
+	description: `Strategy-led UGC and direct-response video ads by ${creator.name}. Sample work, clients, process and booking.`,
 };
 
 export default function RootLayout({
@@ -42,7 +42,7 @@ export default function RootLayout({
 		>
 			<body>
 				<noscript>
-					<style>{".page { opacity: 1; transform: none; }"}</style>
+					<style>{".loader { display: none; }"}</style>
 				</noscript>
 				{children}
 			</body>

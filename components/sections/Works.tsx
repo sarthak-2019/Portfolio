@@ -1,58 +1,52 @@
-import Image from "next/image";
-import { works } from "@/lib/content";
-import { ArrowRight, ArrowUpRight } from "../icons";
+import { creator, reels } from "@/lib/content";
+import { ArrowRight } from "../icons";
 import { Page } from "../Page";
+import { ReelCard } from "../ReelCard";
 
 export function Works() {
 	return (
 		<Page id="works" className="works">
 			<div className="page-content works-head">
-				<h2>
-					Selected
-					<br />
-					Works
-				</h2>
+				<div>
+					<h2 data-split="chars">
+						Sample
+						<br />
+						Work
+					</h2>
+					<p className="works-sub" data-scramble>
+						Content that stops the scroll
+					</p>
+				</div>
 				<div className="glow-orb" />
 			</div>
 
-			<div className="page-content works-grid">
-				{works.map((work) => (
-					<article key={work.title} className={`work${work.stagger ? " stagger" : ""}`}>
-						<div className={`work-media${work.square ? " square" : ""}`}>
-							<div className="work-wash" />
-							<span className="work-year">{work.year}</span>
-							<Image
-								src={work.src}
-								alt={work.alt}
-								width={work.width}
-								height={work.height}
-								sizes="(min-width: 768px) 460px, 100vw"
-							/>
-						</div>
-						<div className="work-foot">
-							<div>
-								<h3>{work.title}</h3>
-								<p>{work.tags}</p>
-							</div>
-							<ArrowUpRight className="work-arrow" />
-						</div>
-					</article>
+			<div className="page-content reels-grid">
+				{reels.map((reel) => (
+					<ReelCard key={`${reel.brand}-${reel.format}`} reel={reel} />
 				))}
 
-				<article className="work stagger work-archive">
+				<a
+					className="work work-archive reel-archive"
+					href={creator.instagram}
+					target="_blank"
+					rel="noreferrer"
+					data-cursor="Open"
+				>
 					<div>
 						<h3>
-							More
+							Full
 							<br />
-							Archives
+							Reel
+							<br />
+							Library
 						</h3>
 						<p>
-							A deeper dive into the vault of past experiments, posters, and typography
-							studies.
+							30+ more ads across beauty, finance, health and tech — hooks, demos,
+							testimonials and try-ons.
 						</p>
 					</div>
 					<ArrowRight className="archive-arrow" strokeWidth={1.6} />
-				</article>
+				</a>
 			</div>
 		</Page>
 	);

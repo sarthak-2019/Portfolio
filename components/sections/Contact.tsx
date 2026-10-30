@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { email } from "@/lib/content";
-import { Instagram, LinkedIn, Mail } from "../icons";
+import { creator } from "@/lib/content";
+import { Instagram, Mail, TikTok } from "../icons";
 import { Page } from "../Page";
 import { QueryForm } from "../QueryForm";
+import { RollText } from "../RollText";
 
 export function Contact() {
 	return (
@@ -13,26 +14,37 @@ export function Contact() {
 						<Image
 							className="contact-portrait"
 							src="/img/portrait-contact.jpg"
-							alt="Mara Vance"
+							alt={creator.name}
 							width={190}
 							height={250}
+							data-cursor="Hi!"
 						/>
-						<h2>
-							Let&apos;s Build Something
+						<h2 data-split="words">
+							Let&apos;s Make Ads
 							<br />
-							Iconic Together.
+							That Convert.
 						</h2>
-						<p className="blurb">
-							Currently accepting new projects for Q4 2024. If you&apos;re ready to stop
-							playing safe and start building a legacy, get in touch.
+						<p className="blurb" data-split="lines">
+							{creator.booking} Tell me about your product and goals — I&apos;ll get back
+							to you within one business day.
 						</p>
 					</div>
 					<div className="contact-btns">
-						<button className="btn btn-solid" type="button">
-							Book a Call
-						</button>
-						<a className="btn btn-outline" href={`mailto:${email}`}>
-							Email Me
+						<a
+							className="btn btn-solid"
+							href={`mailto:${creator.email}?subject=UGC%20project%20enquiry`}
+							data-magnetic="0.3"
+						>
+							<RollText>Get Your Ads Made</RollText>
+						</a>
+						<a
+							className="btn btn-outline"
+							href={creator.instagram}
+							target="_blank"
+							rel="noreferrer"
+							data-magnetic="0.3"
+						>
+							<RollText>DM on Instagram</RollText>
 						</a>
 					</div>
 				</div>
@@ -42,26 +54,26 @@ export function Contact() {
 
 					<div className="contact-links">
 						<div className="socials">
-							<a href="#" aria-label="Instagram">
-								<span>Instagram</span>
+							<a href={creator.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+								<RollText>{`Instagram ${creator.handle}`}</RollText>
 								<Instagram />
 							</a>
-							<a href="#" aria-label="LinkedIn">
-								<span>LinkedIn</span>
-								<LinkedIn />
+							<a href={creator.tiktok} target="_blank" rel="noreferrer" aria-label="TikTok">
+								<RollText>{`TikTok ${creator.handle}`}</RollText>
+								<TikTok />
 							</a>
-							<a href={`mailto:${email}`} aria-label="Email">
-								<span>{email}</span>
+							<a href={`mailto:${creator.email}`} aria-label="Email">
+								<RollText>{creator.email}</RollText>
 								<Mail />
 							</a>
 						</div>
 
 						<p className="copyright">
-							© 2024 Mara Vance / Vance Studio.
+							© {creator.year} {creator.name} · {creator.handle}.
 							<br />
 							All Rights Reserved.
 							<br />
-							Designed &amp; Developed in the Lab.
+							Scripted, Shot &amp; Edited In-House.
 						</p>
 					</div>
 				</div>
